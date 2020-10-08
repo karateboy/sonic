@@ -1,0 +1,94 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET      /                                                                     controllers.Assets.at(path="/public/dist", file="index.html")
+
+# Map static resources from the /public folder to the /assets URL path
+GET      /static/*file                                                         controllers.Assets.versioned(path="/public/static", file: Asset)
+GET      /html/*file                                                           controllers.Assets.at(path="/public/html", file)
+GET      /dist/*file                                                           controllers.Assets.at(path="/public/dist", file)
+
+POST     /logout                                                               controllers.Login.logout
+POST     /login                                                                controllers.Login.authenticate
+GET      /getUserInfo                                                          controllers.Login.getUserInfo
+
+GET      /logout                                                               controllers.Login.logout
+POST     /authenticate                                                         controllers.Login.authenticate
+
+#Sonic API
+GET      /dashboard                                                            controllers.Mist.TODO
+GET      /octaveBandCenterFreq                                                 controllers.Mist.TODO
+GET      /realTimeValues                                                       controllers.Mist.TODO
+GET      /setting                                                              controllers.Mist.TODO
+POST     /setting                                                              controllers.Mist.TODO
+GET      /logging                                                              controllers.Mist.TODO
+POST     /logging                                                              controllers.Mist.TODO
+GET      /streaming                                                            controllers.Mist.TODO
+POST     /streaming                                                            controllers.Mist.TODO
+GET      /status                                                               controllers.Mist.TODO
+GET      /getSEL1sQueue                                                        controllers.Mist.TODO
+GET      /spectrum                                                             controllers.Mist.TODO
+POST     /note                                                                 controllers.Mist.TODO
+POST     /backgroundLevel                                                      controllers.Mist.TODO
+GET      /playback/OceanSonic                                                  controllers.Mist.TODO
+
+
+
+
+#unused API
+GET      /gc                                                                   controllers.Application.gcList
+GET      /monitor                                                              controllers.Application.monitorList
+POST     /monitor                                                              controllers.Application.updateMonitor
+GET      /monitor_type                                                         controllers.Application.monitorTypeList
+POST     /monitor_type                                                         controllers.Application.updateMonitorType
+
+GET      /history_data                                                         controllers.Query.historyData(monitor:String, monitorTypes: String, start: Long, end: Long)
+GET      /history_data/excel                                                   controllers.Query.historyDataExcel(monitor:String, monitorTypes: String, start: Long, end: Long)
+GET      /pdfReport/:id                                                        controllers.Query.pdfReport(id:String)
+GET      /history_trend                                                        controllers.Query.historyTrendChart2(monitors: String, monitorTypes: String, start: Long, end: Long)
+GET      /realtime_data                                                        controllers.Realtime.latestValues	
+GET      /gc_monitor                                                           controllers.Realtime.getGcMonitors
+GET      /last10_data                                                          controllers.Query.last10Data()	
+	
+
+GET      /dataPeriod                                                           controllers.Application.getDataPeriod
+POST     /dataPeriod                                                           controllers.Application.setDataPeriod
+
+# old api
+POST     /User                                                                 controllers.Application.newUser
+GET      /User                                                                 controllers.Application.getAllUsers
+PUT      /User/:id                                                             controllers.Application.updateUser(id)
+DELETE   /User/:id                                                             controllers.Application.deleteUser(id)
+
+GET      /Group                                                                controllers.Application.getGroupInfoList
+
+GET      /JSON/HistoryTrend/:monitors/:monitorType/:reportUnit/:start/:end     controllers.Query.historyTrendChart(monitors, monitorType, reportUnit, start:Long, end:Long, outputTypeStr="html")
+GET      /Excel/HistoryTrend/:monitors/:monitorType/:reportUnit/:start/:end    controllers.Query.historyTrendChart(monitors,monitorType, reportUnit, start:Long, end:Long, outputTypeStr="excel")
+
+GET      /JSON/HistoryBoxplot/:monitors/:monitorType/:reportUnit/:start/:end   controllers.Query.historyBoxPlot(monitors, monitorType, reportUnit, start:Long, end:Long, outputTypeStr="html")
+GET      /Excel/HistorBoxplot/:monitors/:monitorType/:reportUnit/:start/:end   controllers.Query.historyBoxPlot(monitors,monitorType, reportUnit, start:Long, end:Long, outputTypeStr="excel")
+
+
+POST     /SaveMonitorTypeConfig                                                controllers.Application.saveMonitorTypeConfig
+POST     /SaveMonitorConfig                                                    controllers.Application.saveMonitorConfig
+
+#Realtime
+GET      /MonitorTypeStatusList                                                controllers.Realtime.MonitorTypeStatusList()
+GET      /RealtimeData                                                         controllers.Realtime.realtimeData()
+
+#JSON
+GET      /MonitorType                                                          controllers.Application.monitorTypeList
+POST     /MonitorType/:id                                                      controllers.Application.upsertMonitorType(id)
+
+GET      /Monitor                                                              controllers.Application.monitorList
+POST     /Monitor/:id                                                          controllers.Application.upsertMonitor(id)
+GET      /IndPark                                                              controllers.Application.indParkList
+GET      /ReportUnit                                                           controllers.Application.reportUnitList
+GET      /MenuRight                                                            controllers.Application.menuRightList
+
+GET      /Record/:monitor/:monitorType/:start/:end                             controllers.Query.recordList(monitor, monitorType, start:Long, end:Long)
+
+#import Data
+GET      /*arg                                                                 controllers.Application.redirectRoot(arg)
