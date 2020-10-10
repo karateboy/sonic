@@ -144,6 +144,14 @@ export default Vue.extend({
     this.drawOctalChart();
     this.drawOctalChart30();
   },
+  data(){
+    return {
+      connected: false,
+      streaming: false,
+      logging: false,
+      backgroundLevel: 0
+    }
+  },
   methods: {
     getRealtimeValues() {
       axios
