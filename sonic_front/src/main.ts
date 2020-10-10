@@ -9,10 +9,14 @@ import Highcharts from "highcharts"
 import ex from "highcharts/modules/exporting";
 import csv from "highcharts/modules/export-data"
 import offline_export from "highcharts/modules/offline-exporting";
+import axios from "axios"
 
 ex(Highcharts);
 csv(Highcharts)
 offline_export(Highcharts);
+
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:9000/' : '';
+axios.defaults.withCredentials = true
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)

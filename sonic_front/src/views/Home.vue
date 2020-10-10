@@ -57,7 +57,7 @@
       header-text-variant="white"
       border-variant="primary"
     >
-    <b-table-simple striped>
+      <b-table-simple striped>
         <b-tbody>
           <b-tr>
             <b-th>Max SEL:</b-th>
@@ -95,14 +95,69 @@
 import Vue from "vue";
 import Highcharts from "highcharts";
 
+let octFreq = [
+  "6.3",
+  "8",
+  "10",
+  "12.5",
+  "16",
+  "20",
+  "25",
+  "31.5",
+  "40",
+  "50",
+  "63",
+  "80",
+  "100",
+  "125",
+  "160",
+  "200",
+  "250",
+  "315",
+  "400",
+  "500",
+  "630",
+  "800",
+  "1k",
+  "1.25k",
+  "1.6k",
+  "2k",
+  "2.5k",
+  "3.15k",
+  "4k",
+  "5k",
+  "6.3k",
+  "8k",
+  "10k",
+  "12.5k",
+  "16k",
+  "20k",
+];
+
+import axios from "axios";
+
 export default Vue.extend({
   mounted() {
+    this.getRealtimeValues();
     this.drawSoundChart();
     this.drawSoundChart30();
     this.drawOctalChart();
     this.drawOctalChart30();
   },
   methods: {
+    getRealtimeValues() {
+      axios
+        .get("/realTimeValues")
+        .then((res) => {
+          if (res.status === 200) {
+            //const ret = res.data;
+            
+          }
+        })
+        .catch((err) => {
+          throw err;
+        });
+    },
     drawSoundChart() {
       let series: Array<Highcharts.SeriesSplineOptions> = [
         {
@@ -294,7 +349,10 @@ export default Vue.extend({
           align: "center",
           style: { fontSize: "24px" },
         },
-
+        xAxis: {
+          categories: octFreq.slice(5, 36),
+          crosshair: true,
+        },
         yAxis: {
           min: 0,
           title: {
@@ -371,7 +429,10 @@ export default Vue.extend({
           align: "center",
           style: { fontSize: "24px" },
         },
-
+        xAxis: {
+          categories: octFreq.slice(5, 36),
+          crosshair: true,
+        },
         yAxis: {
           min: 0,
           title: {

@@ -18,22 +18,19 @@ GET      /logout                                                               c
 POST     /authenticate                                                         controllers.Login.authenticate
 
 #Sonic API
-GET      /dashboard                                                            controllers.Mist.TODO
 GET      /octaveBandCenterFreq                                                 controllers.Mist.TODO
-GET      /realTimeValues                                                       controllers.Mist.TODO
-GET      /setting                                                              controllers.Mist.TODO
-POST     /setting                                                              controllers.Mist.TODO
-GET      /logging                                                              controllers.Mist.TODO
-POST     /logging                                                              controllers.Mist.TODO
-GET      /streaming                                                            controllers.Mist.TODO
-POST     /streaming                                                            controllers.Mist.TODO
-GET      /status                                                               controllers.Mist.TODO
+GET      /realTimeValues                                                       controllers.Mist.getRealtimeValues
+GET      /setting                                                              controllers.Mist.getSetting
+POST     /setting                                                              controllers.Mist.postSetting
+POST     /logging                                                              controllers.Mist.postLogging
+POST     /streaming                                                            controllers.Mist.postStreamming
+GET      /status                                                               controllers.Mist.getStatus
 GET      /getSEL1sQueue                                                        controllers.Mist.TODO
 GET      /spectrum                                                             controllers.Mist.TODO
 POST     /note                                                                 controllers.Mist.TODO
 POST     /backgroundLevel                                                      controllers.Mist.TODO
 GET      /playback/OceanSonic                                                  controllers.Mist.TODO
-
+GET      /updateConfig														   controllers.Mist.updateConfig
 
 
 

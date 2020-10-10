@@ -42,7 +42,7 @@ public class RealTimeValuesFactory {
 	
 //	private Queue<JsonObject> realTimeValuesQueue = new ArrayDeque<>(60);
 	
-	private JsonObject realTimeValues = null;
+	private JsonObject realTimeValues = new JsonObject();
 	
 	public String getJsonSpectrum(){
 		if(this.spectrum == null) return "[]";
